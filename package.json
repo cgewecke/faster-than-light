@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.1.0"
+  },
+  "name": "faster-than-light",
+  "version": "1.0.0",
+  "description": "Faster Than Light smart contracts",
+  "main": "",
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.23.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-truffle": "^0.3.1",
+    "ganache-cli": "^6.12.2",
+    "truffle": "^5.3.6",
+    "truffle-assertions": "^0.9.2"
+  },
+  "scripts": {
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "ganache": "ganache-cli",
+    "test": "truffle test",
+    "eslint": "eslint --fix ."
+  },
+  "author": "David Kneel",
+  "license": "ISC"
+}
