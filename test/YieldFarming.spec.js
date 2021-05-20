@@ -1,6 +1,6 @@
 const YieldFarming = artifacts.require('YieldFarming')
 const truffleAssert = require('truffle-assertions')
-const { /* expectRevert, */ time } = require('@openzeppelin/test-helpers')
+const { expectRevert, time } = require('@openzeppelin/test-helpers')
 const { expect } = require('chai')
 
 function timeout (ms) {
@@ -30,20 +30,40 @@ contract('YieldFarming', (accounts) => {
     expect(secondOwner).to.equal(secondAccount)
   })
   describe('Release token', async () => {
-    beforeEach(async () => {
-      const value = 10000000000000
-      await this.yieldFarming.deposit({ from: firstAccount, value })
+    describe('without deposit', async ()=>{
+      // beforeEach(async () => {
+      //   const value = 10000000000000
+      //   await this.yieldFarming.deposit({ from: firstAccount, value })
+      // })
+      it('try release', async () => {
+        await expectRevert(
+          this.yieldFarming.releaseTokens(),
+          'TokenTimelock not found!'
+        )
+      })
+      it('try get TokenTimelock', async () => {
+        await expectRevert(
+          this.yieldFarming.getMyTokenTimelock(),
+          'TokenTimelock not found!'
+        )
+      })
     })
-    // it('before unlock', async () => {
-    //   // await timeout(TIMEOUT*1000)
-    //   await expectRevert(
-    //     this.yieldFarming.releaseTokens(),
-    //     'TokenTimelock: current time is before release time'
-    //   )
-    // })
-    it('after unlock', async () => {
-      await timeout(TIMEOUT * 1000)
-      await this.yieldFarming.releaseTokens()
+    describe('with deposit', async ()=>{
+      beforeEach(async () => {
+        const value = 10000000000000
+        await this.yieldFarming.deposit({ from: firstAccount, value })
+      })
+      it('before unlock', async () => {
+        // await timeout(TIMEOUT*1000)
+        await expectRevert(
+          this.yieldFarming.releaseTokens(),
+          'TokenTimelock: current time is before release time'
+        )
+      })
+      it('after unlock', async () => {
+        await timeout(TIMEOUT * 1000)
+        await this.yieldFarming.releaseTokens()
+      })
     })
   })
 })
