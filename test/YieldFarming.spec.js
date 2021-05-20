@@ -43,7 +43,7 @@ contract('YieldFarming', (accounts) => {
     })
     it('after unlock', async () => {
       await timeout(TIMEOUT * 1000)
-      this.yieldFarming.releaseTokens()
+      await this.yieldFarming.releaseTokens()
     })
   })
 })

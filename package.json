@@ -24,7 +24,8 @@
     "migrate": "truffle migrate",
     "ganache": "ganache-cli",
     "test": "truffle test",
-    "eslint": "eslint --fix ."
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "author": "David Kneel",
   "license": "ISC"
