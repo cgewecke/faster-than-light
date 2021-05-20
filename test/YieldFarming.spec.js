@@ -34,13 +34,13 @@ contract('YieldFarming', (accounts) => {
       const value = 10000000000000
       await this.yieldFarming.deposit({ from: firstAccount, value })
     })
-    it('before unlock', async () => {
-      // await timeout(TIMEOUT*1000)
-      await expectRevert(
-        this.yieldFarming.releaseTokens(),
-        'TokenTimelock: current time is before release time'
-      )
-    })
+    // it('before unlock', async () => {
+    //   // await timeout(TIMEOUT*1000)
+    //   await expectRevert(
+    //     this.yieldFarming.releaseTokens(),
+    //     'TokenTimelock: current time is before release time'
+    //   )
+    // })
     it('after unlock', async () => {
       await timeout(TIMEOUT * 1000)
       await this.yieldFarming.releaseTokens()
