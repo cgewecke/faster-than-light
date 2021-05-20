@@ -46,7 +46,7 @@ contract YieldFarming is Ownable {
             )
             .toUInt()
         );
-        tokenTimeLocks[_msgSender()] = new TokenTimelock(token, _msgSender(), lockTime);
+        tokenTimeLocks[_msgSender()] = new TokenTimelock(token, _msgSender(), block.timestamp + lockTime);
     }
 
     function getMyTokenTimelock() public view returns (TokenTimelock) {
