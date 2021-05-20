@@ -1,5 +1,35 @@
-# Faster Than Light
+# Faster Than Light smart contracts
 [![Coverage Status](https://coveralls.io/repos/github/TachyonicFinance/faster-than-light/badge.svg?branch=development)](https://coveralls.io/github/TachyonicFinance/faster-than-light?branch=development)
 
-## Acknowledgements
+## 🚧 Development
+
+### 🐑 Repository cloning
+```terminal
+git clone https://github.com/TachyonicFinance/faster-than-light
+git submodule init
+git submodule update
+```
+
+👨‍💻 Happy coding!
+
+### 👕 Linting
+
+```terminal
+yarn solhint
+yarn lint
+```
+
+### ✅ Testing
+
+```terminal
+yarn test
+```
+
+#### ✔️ With code coverage
+
+```terminal
+yarn coveralls
+```
+
+## 🤝🏿 Acknowledgements
 This product includes software developed by ABDK Consulting
