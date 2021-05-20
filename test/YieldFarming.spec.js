@@ -30,7 +30,7 @@ contract('YieldFarming', (accounts) => {
     expect(secondOwner).to.equal(secondAccount)
   })
   describe('Release token', async () => {
-    describe('without deposit', async ()=>{
+    describe('without deposit', async () => {
       // beforeEach(async () => {
       //   const value = 10000000000000
       //   await this.yieldFarming.deposit({ from: firstAccount, value })
@@ -48,7 +48,7 @@ contract('YieldFarming', (accounts) => {
         )
       })
     })
-    describe('with deposit', async ()=>{
+    describe('with deposit', async () => {
       beforeEach(async () => {
         const value = 10000000000000
         await this.yieldFarming.deposit({ from: firstAccount, value })
