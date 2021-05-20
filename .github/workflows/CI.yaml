@@ -21,8 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - run: git submodule init
-      - run: git submodule update
+      - run: git submodule update --recursive
       - run: npm install -g yarn
 
       - id: yarn-cache
