@@ -1,0 +1,3 @@
+[submodule "contracts/abdk-libraries-solidity"]
+	path = contracts/abdk-libraries-solidity
+	url = git@github.com:TachyonicFinance/abdk-libraries-solidity.git
