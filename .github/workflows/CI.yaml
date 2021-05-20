@@ -35,5 +35,6 @@ jobs:
             ${{ matrix.os }}-yarn-
 
       - run: yarn
+      - run: yarn solhint
       - run: yarn lint
       - run: yarn test
