@@ -1,4 +1,5 @@
 module.exports = {
+  ignorePatterns: ['coverage/'],
   env: {
     es2021: true,
     'truffle/globals': true, // same as "truffle/truffle": true

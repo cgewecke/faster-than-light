@@ -99,7 +99,7 @@ module.exports = {
   },
 
   plugins: [
-    "solidity-coverage"
+    'solidity-coverage'
   ],
 
   // Truffle DB is currently disabled by default; to enable it, change enabled: false to enabled: true
