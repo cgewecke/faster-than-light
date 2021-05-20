@@ -34,7 +34,9 @@ contract YieldFarming is Ownable {
     }
 
     function deposit() payable public{
-        token.mint(address(this),
+        TokenTimelock tokenTimeLock = new TokenTimelock(token, _msgSender(), block.timestamp + lockTime);
+        tokenTimeLocks[_msgSender()] = tokenTimeLock;
+        token.mint(address(tokenTimeLock),
             multiplier.mul(ABDKMathQuad.fromUInt(msg.value))
             .div(
                 ABDKMathQuad.fromUInt(1)
@@ -46,7 +48,6 @@ contract YieldFarming is Ownable {
             )
             .toUInt()
         );
-        tokenTimeLocks[_msgSender()] = new TokenTimelock(token, _msgSender(), block.timestamp + lockTime);
     }
 
     function getMyTokenTimelock() public view returns (TokenTimelock) {
