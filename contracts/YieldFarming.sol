@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.8.0 <0.9.0;
 
 import "@openzeppelin/contracts/token/ERC20/utils/TokenTimelock.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
@@ -30,10 +30,12 @@ contract YieldFarming is Ownable {
         interestRate = _newInterestRate;
         multiplier = _newMultiplier;
         lockTime = _newLockTime;
+        // solhint-disable-next-line not-rely-on-time
         tokenomicsTimestamp = block.timestamp;
     }
 
-    function deposit() payable public{
+    function deposit() public payable {
+        // solhint-disable-next-line not-rely-on-time
         TokenTimelock tokenTimeLock = new TokenTimelock(token, _msgSender(), block.timestamp + lockTime);
         tokenTimeLocks[_msgSender()] = tokenTimeLock;
         token.mint(address(tokenTimeLock),
@@ -42,6 +44,7 @@ contract YieldFarming is Ownable {
                 ABDKMathQuad.fromUInt(1)
                 .add(interestRate)
                 .pow(
+                    // solhint-disable-next-line not-rely-on-time
                     ABDKMathQuad.fromUInt(block.timestamp - tokenomicsTimestamp)
                     .div(oneDay)
                 )
@@ -52,7 +55,7 @@ contract YieldFarming is Ownable {
 
     function getMyTokenTimelock() public view returns (TokenTimelock) {
         address msgSender = _msgSender();
-        require(address(tokenTimeLocks[msgSender]) != address(0), "YieldFarming: TokenTimelock not found!");
+        require(address(tokenTimeLocks[msgSender]) != address(0), "TokenTimelock not found!");
         return tokenTimeLocks[msgSender];
     }
 
